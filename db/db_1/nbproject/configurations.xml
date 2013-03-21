@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="51">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="db" displayName="db" projectFiles="true">
+      <itemPath>../db.c</itemPath>
+      <itemPath>../db.h</itemPath>
+      <itemPath>../interface.c</itemPath>
+      <itemPath>../server.c</itemPath>
+      <itemPath>../window.c</itemPath>
+      <itemPath>../window.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>db_1-Makefile.mk</itemPath>
+      <itemPath>/gpfs/main/home/qfang/course/cs167/db/Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>..</Elem>
+  </sourceRootList>
+  <projectmakefile>db_1-Makefile.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>/gpfs/main/home/qfang/course/cs167/db</buildCommandWorkingDir>
+          <buildCommand>make -f Makefile</buildCommand>
+          <cleanCommand>make -f Makefile clean</cleanCommand>
+          <executablePath>../server</executablePath>
+        </makeTool>
+        <requiredProjects>
+        </requiredProjects>
+      </makefileType>
+      <item path="../db.c">
+        <itemTool>0</itemTool>
+        <cCompilerTool>
+          <includeDirectories>
+            <directoryPath>..</directoryPath>
+          </includeDirectories>
+          <inheritIncValues>false</inheritIncValues>
+          <preprocessorList>
+            <Elem>__GNUC_STDC_INLINE__=1</Elem>
+            <Elem>__STRICT_ANSI__=1</Elem>
+            <Elem>__GCC_HAVE_DWARF2_CFI_ASM=1</Elem>
+            <Elem>_POSIX_C_SOURCE=200112L</Elem>
+            <Elem>__STDC_VERSION__=199901L</Elem>
+          </preprocessorList>
+          <inheritPreValues>false</inheritPreValues>
+        </cCompilerTool>
+      </item>
+      <item path="../db.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="../interface.c">
+        <itemTool>0</itemTool>
+        <cCompilerTool>
+          <includeDirectories>
+            <directoryPath>..</directoryPath>
+          </includeDirectories>
+          <inheritIncValues>false</inheritIncValues>
+          <preprocessorList>
+            <Elem>__GNUC_STDC_INLINE__=1</Elem>
+            <Elem>__STRICT_ANSI__=1</Elem>
+            <Elem>__GCC_HAVE_DWARF2_CFI_ASM=1</Elem>
+            <Elem>_POSIX_C_SOURCE=200112L</Elem>
+            <Elem>__STDC_VERSION__=199901L</Elem>
+            <Elem>__OPTIMIZE__=1</Elem>
+          </preprocessorList>
+          <inheritPreValues>false</inheritPreValues>
+        </cCompilerTool>
+      </item>
+      <item path="../server.c">
+        <itemTool>0</itemTool>
+        <cCompilerTool>
+          <includeDirectories>
+            <directoryPath>..</directoryPath>
+          </includeDirectories>
+          <inheritIncValues>false</inheritIncValues>
+          <preprocessorList>
+            <Elem>__GNUC_STDC_INLINE__=1</Elem>
+            <Elem>__STRICT_ANSI__=1</Elem>
+            <Elem>__GCC_HAVE_DWARF2_CFI_ASM=1</Elem>
+            <Elem>_POSIX_C_SOURCE=200112L</Elem>
+            <Elem>__STDC_VERSION__=199901L</Elem>
+          </preprocessorList>
+          <inheritPreValues>false</inheritPreValues>
+        </cCompilerTool>
+      </item>
+      <item path="../window.c">
+        <itemTool>0</itemTool>
+        <cCompilerTool>
+          <includeDirectories>
+            <directoryPath>..</directoryPath>
+          </includeDirectories>
+          <inheritIncValues>false</inheritIncValues>
+          <preprocessorList>
+            <Elem>__GNUC_STDC_INLINE__=1</Elem>
+            <Elem>__STRICT_ANSI__=1</Elem>
+            <Elem>__GCC_HAVE_DWARF2_CFI_ASM=1</Elem>
+            <Elem>_XOPEN_SOURCE=600</Elem>
+            <Elem>_POSIX_C_SOURCE=200112L</Elem>
+            <Elem>__STDC_VERSION__=199901L</Elem>
+          </preprocessorList>
+          <inheritPreValues>false</inheritPreValues>
+        </cCompilerTool>
+      </item>
+      <item path="../window.h">
+        <itemTool>3</itemTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
