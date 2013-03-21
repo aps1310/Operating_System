@@ -1,0 +1,17 @@
+Chapter 1 Reading
+
+Computers have 2 modes of execution, user mode and privileged mode. Kernal is the key portion of the privileged-mode OS code. Traps are the general means for invoking the kernel from user code, like a system call. Interrupt is a request from an external device. 
+
+For process, we hink of it both as an abstraction of memory — as an address space (the collection of locations that can be referenced by the process); and as the abstraction of one or more processors — as threads (or threads of control). Processes' address spaces are disjoint. 
+
+How is the address space organized ? 
+
+Calls to fork return twice: once in the parent process and once in the child process. The text (code) part is read-only, so odd code will like this:
+
+if (fork() == 0) {
+   /* the child process’s thread executes here */
+} else {
+   /* the parent process’s thread executes here */
+}
+
+

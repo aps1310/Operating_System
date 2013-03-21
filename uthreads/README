@@ -1,0 +1,128 @@
+ Name: Quan Fang
+Login: qfang
+
+
+(1)
+In this project, I implemented a user-level threads package, with thread creation/deletion/joining, mutex, condition variables and a priority-based scheduler. This package is able to perform multithread programming tasks. 
+
+On a uniprocessor machine, thread behaviors (creation, join, deletion, etc) are accomplished by context switch. A context is a snapshot of the CPU as it is at a point in time, threads are a kerkel construct that contain a bunch of other information. 
+
+
+
+(2)
+In this project, TA already wrote most of the code. I followed instructions to finish the following functions. 
+
+*********
+uthread.c
+*********
+
+void uthread_init(void);
+// (1) Initialize global data structures, set all threads[UTH_MAX_UTHREADS]'s state to UT_NO_STATE
+
+int uthread_create(uthread_id_t *uidp, uthread_func_t func, long arg1, void *arg2, int prio);
+// (1) Find an available thread, change the state from UT_NO_STATE to UT_RUNNABLE, set priority and allocate stack.
+// (2) Then, we call uthread_makecontext for this thread, and enqueue this thread to the run-queue table. 
+
+void uthread_exit(int status)
+// Terminating the current thread takes 3 steps.
+// (1) Set related flags, ut_has_exited = 1 and ut_state = UT_ZOMBIE
+// (2.1) For detached thread, wake the thread joining me
+// (2.2) For non-detached thread, call uthread_wake to clear the current thread.
+// (3) Finally call thread_switch() to leave this thread. Because it exits.
+
+int uthread_join(uthread_id_t uid, int *return_value)
+// Despite error condition check.
+// This function is find "which thread to join me when I'm done."
+// If the target is now finished, uthread_join blocks.
+
+int uthread_detach(uthread_id_t uid)
+// This function is to set the ut_detached flag to true.
+// If it's already exited (State == ZOMBIE), call make_reapable() to cleanup this thread
+
+static void uthread_destroy(uthread_t *uth)
+// Free the memory of a thread.
+
+***************
+uthread_sched.c
+***************
+void uthread_yield(void)
+// Change current thread's state from UT_ON_CPU to UT_RUNNABLE, put this thread into the runq table and yield the CPU to others by calling uthread_switch()
+
+void uthread_block(void)
+// Change current thread's state from UT_ON_CPU to UT_WAIT, put this thread into the runq table and yield the CPU to others by calling uthread_switch()
+
+void uthread_wake (uthread_t *uthr)
+// Change some thread's state from UT_WAIT to UT_RUNNABLE
+
+void uthread_setprio(uthread_id_t id, int prio)
+// change the priority of the indicated thread, and modify the structure of the runq table correspondingly. 
+
+void uthread_switch(void)
+// Yield current thread's onwership of the CPU to some other thread with the highest priority in the runq table
+
+void uthread_sched_init(void)
+// Setup the scheduler, by utqueue_init the runq table
+
+*************
+uthread_mtx.c
+*************
+
+****
+the mtx structure contains a owner and a waiting queue
+
+void uthread_mtx_init(uthread_mtx_t *mtx) 
+// Set mtx owner to NULL
+// Init the mtx wating queue
+
+void   uthread_mtx_lock(uthread_mtx_t *mtx)
+// If (mtx->owner) {enqueue the current thread to the waiting queue}
+// else, set current thread as the mtx-owner
+
+void   uthread_mtx_trylock()
+// similar to mtx_lock, but never block.
+
+void uthread_mtx_unlock(uthread_mtx_t *mtx)
+// Hands off the ownership of the lock to some other thread, or NULL
+
+**************
+uthread_cond.c
+**************
+****
+the conditional variable contains a waiter queue
+
+void uthread_cond_init(uthread_cond_t *cond)
+// initialize the waiter queue
+
+uthread_cond_wait(uthread_cond_t *cond, uthread_mtx_t *mtx)
+// Briefly speaking, it changeds current thread's state to UT_WAIT, and put it into the conditional variable queue
+
+void uthread_cond_broadcast(uthread_cond_t *cond)
+// Wakeup all the threads waiting on this conditional variabel
+
+void uthread_cond_signal(uthread_cond_t *cond)
+// Wakeup some thread waiting on this conditional variabel
+
+
+
+(3) 
+Thanks Jordan Place for his help on debugging this program.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
